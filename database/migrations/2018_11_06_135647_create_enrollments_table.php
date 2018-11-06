@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateUsersTable.
+ * Class CreateEnrollmentsTable.
  */
-class CreateUsersTable extends Migration
+class CreateEnrollmentsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,11 +15,11 @@ class CreateUsersTable extends Migration
 	 */
 	public function up()
 	{
-//		Schema::create('users', function(Blueprint $table) {
-//            $table->increments('id');
-//
-//            $table->timestamps();
-//		});
+		Schema::create('enrollments', function(Blueprint $table) {
+            $table->increments('id');
+
+            $table->timestamps();
+		});
 	}
 
 	/**
@@ -29,6 +29,6 @@ class CreateUsersTable extends Migration
 	 */
 	public function down()
 	{
-//		Schema::drop('users');
+		Schema::drop('enrollments');
 	}
 }
