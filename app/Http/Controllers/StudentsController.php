@@ -23,10 +23,10 @@ class StudentsController extends Controller
      * @var StudentValidator
      */
     protected $validator;
+
     /**
-     * AddressesController constructor.
-     *
-     * @param StudentsService $repository
+     * StudentsController constructor.
+     * @param StudentsService $service
      * @param StudentValidator $validator
      */
     public function __construct(StudentsService $service, StudentValidator $validator)

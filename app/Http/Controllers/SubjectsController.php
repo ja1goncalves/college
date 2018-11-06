@@ -26,7 +26,7 @@ class SubjectsController extends Controller
      */
     protected $validator;
     /**
-     * AddressesController constructor.
+     * SubjectsController constructor.
      *
      * @param SubjectsService $repository
      * @param SubjectValidator $validator
