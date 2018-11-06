@@ -6,6 +6,8 @@ use App\Http\Requests;
 use App\Services\UsersService;
 use App\Validators\UserValidator;
 use App\Http\Controllers\Traits\CrudMethods;
+use Illuminate\Http\Request;
+
 /**
  * Class UsersController.
  *
@@ -31,5 +33,10 @@ class UsersController extends Controller
     {
         $this->service   = $service;
         $this->validator = $validator;
+    }
+
+    public function login(Request $request)
+    {
+        return response()->json($this->service->login($request->all()), 200);
     }
 }

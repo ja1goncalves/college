@@ -27,4 +27,15 @@ class UsersService extends AppService
         $this->repository = $repository;
     }
 
+    public function login($request)
+    {
+        if($request['user'] && $request['password']){
+            $user = $this->repository->findByField('user' , $request['user']);
+            if($user){
+                return $user->password == $request['password'];
+            }else
+                return ['error' => true, 'message' => 'Usuário inválido!'];
+        }else
+            return ['error' => true, 'message' => 'Falta de dados'];
+    }
 }
