@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\CrudMethods;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -19,10 +20,11 @@ use App\Validators\EnrollmentValidator;
  */
 class EnrollmentsController extends Controller
 {
+    use CrudMethods;
     /**
      * @var EnrollmentRepository
      */
-    protected $repository;
+    protected $service;
 
     /**
      * @var EnrollmentValidator
@@ -35,9 +37,9 @@ class EnrollmentsController extends Controller
      * @param EnrollmentRepository $repository
      * @param EnrollmentValidator $validator
      */
-    public function __construct(EnrollmentRepository $repository, EnrollmentValidator $validator)
+    public function __construct(EnrollmentRepository $service, EnrollmentValidator $validator)
     {
-        $this->repository = $repository;
+        $this->service = $service;
         $this->validator  = $validator;
     }
 
@@ -48,8 +50,8 @@ class EnrollmentsController extends Controller
      */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $enrollments = $this->repository->all();
+        $this->service->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $enrollments = $this->service->all();
 
         if (request()->wantsJson()) {
 
@@ -76,7 +78,7 @@ class EnrollmentsController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $enrollment = $this->repository->create($request->all());
+            $enrollment = $this->service->create($request->all());
 
             $response = [
                 'message' => 'Enrollment created.',
@@ -110,7 +112,7 @@ class EnrollmentsController extends Controller
      */
     public function show($id)
     {
-        $enrollment = $this->repository->find($id);
+        $enrollment = $this->service->find($id);
 
         if (request()->wantsJson()) {
 
@@ -131,7 +133,7 @@ class EnrollmentsController extends Controller
      */
     public function edit($id)
     {
-        $enrollment = $this->repository->find($id);
+        $enrollment = $this->service->find($id);
 
         return view('enrollments.edit', compact('enrollment'));
     }
@@ -152,7 +154,7 @@ class EnrollmentsController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $enrollment = $this->repository->update($request->all(), $id);
+            $enrollment = $this->service->update($request->all(), $id);
 
             $response = [
                 'message' => 'Enrollment updated.',
@@ -189,7 +191,7 @@ class EnrollmentsController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $deleted = $this->service->delete($id);
 
         if (request()->wantsJson()) {
 
