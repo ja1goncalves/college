@@ -18,7 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('insert-note', 'EnrollmentsController@insertNotes');
-Route::resource('students', 'StudentsController', ['except' => ['created', 'update']]);
+Route::get('details-subject', 'SubjectsController@showWithStudents');
+
+Route::resource('students', 'StudentsController');
+Route::resource('subjects', 'SubjectsController');
+Route::resource('enrollments', 'EnrollmentsController');
 Route::get('students/{id}', 'StudentsController@show');
 
 Route::resource('login', 'UsersController@login');
