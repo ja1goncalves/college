@@ -26,10 +26,11 @@ class EnrollmentsController extends Controller
      * @var EnrollmentValidator
      */
     protected $validator;
+
     /**
      * EnrollmentsController constructor.
      *
-     * @param EnrollmentsService $repository
+     * @param EnrollmentsService $service
      * @param EnrollmentValidator $validator
      */
     public function __construct(EnrollmentsService $service, EnrollmentValidator $validator)

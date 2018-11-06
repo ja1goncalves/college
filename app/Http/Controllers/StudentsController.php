@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\CrudMethods;
-use App\Http\Requests;
 use App\Services\StudentsService;
 use App\Validators\StudentValidator;
 
