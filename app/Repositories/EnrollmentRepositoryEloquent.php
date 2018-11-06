@@ -44,5 +44,15 @@ class EnrollmentRepositoryEloquent extends BaseRepository implements EnrollmentR
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    public function findByStudentAndSubject($student_id, $subject_id)
+    {
+        $this->findWhere(
+            [
+                'student_id' => $student_id,
+                'subject_id' => $subject_id,
+            ]
+        );
+    }
     
 }

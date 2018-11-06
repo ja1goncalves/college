@@ -7,6 +7,8 @@ use App\Http\Controllers\Traits\CrudMethods;
 use App\Http\Requests;
 use App\Services\EnrollmentsService;
 use App\Validators\EnrollmentValidator;
+use Illuminate\Http\Request;
+
 /**
  * Class EnrollmentsController.
  *
@@ -34,5 +36,20 @@ class EnrollmentsController extends Controller
     {
         $this->service    = $service;
         $this->validator  = $validator;
+    }
+
+    public function insertNotes(Request $request)
+    {
+        return $this->service->insertNote($request->all());
+    }
+
+    public function mediaGeralStudent(Request $request)
+    {
+        return $this->service->mediaGeralStudent($request->all());
+    }
+
+    public function mediaStudentInSubject(Request $request)
+    {
+        return $this->service->mediaStudentInSubject($request->all());
     }
 }
