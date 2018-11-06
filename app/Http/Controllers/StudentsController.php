@@ -34,4 +34,9 @@ class StudentsController extends Controller
         $this->service    = $service;
         $this->validator  = $validator;
     }
+
+    public function show(int $id)
+    {
+        $this->service->show($id);
+    }
 }
