@@ -6,6 +6,7 @@ use App\Http\Controllers\Traits\CrudMethods;
 use App\Http\Requests;
 use App\Services\SubjectsService;
 use App\Validators\SubjectValidator;
+use Illuminate\Http\Request;
 
 
 /**
@@ -34,5 +35,10 @@ class SubjectsController extends Controller
     {
         $this->service    = $service;
         $this->validator  = $validator;
+    }
+
+    public function showWithStudents(Request $request)
+    {
+        return $this->service->detailsWithStudent($request->get('subject_id'));
     }
 }
